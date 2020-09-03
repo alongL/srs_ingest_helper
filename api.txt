@@ -1,0 +1,55 @@
+
+
+
+srs_ingest_helper服务器监听8086端口
+
+三、对外API接口
+srs_ingest_helper服务器监听8086端口，访问http://127.0.0.1:8086/进行控制
+
+
+src是源地址
+dest是目标路径，一般是/live/xxxxxx
+
+
+1.添加url,进行代理 
+GET /addstream?src=rtmp://abc.com/live/my&dest=/live/my
+
+Http 200 OK
+返回json
+{
+	"result" : 0,
+	"msg" :"sucess",
+	"hls_path": "http://127.0.0.1:8081/live/my/hls.m3u8",
+	"src": "rtmp://abc.com/live/my",
+	"dest": "/live/my"
+}
+如果dest存在，返回0
+
+2.删除某个服务
+src和dest都可以
+GET /delstream?dest=/live/my
+
+Http 200 OK
+返回json
+{
+	"result":0,
+	"msg":"sucess"
+	"hls_path": "http://127.0.0.1:8081/live/my/hls.m3u8"
+}
+
+
+3. GET /listmedia
+Http 200 OK
+返回json
+{
+	"result":0,
+	"msg":"sucess",
+	"cnt":1,
+	"media": [
+		{ "src":"rtmp://abc.com/live/my",
+		  "dest":"/live/my"
+		  "hls_path":"http://127.0.0.1:8081/live/my/hls.m3u8"
+		}
+	]
+
+}
