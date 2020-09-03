@@ -28,7 +28,15 @@ ffmpeg的编译参见https://github.com/markus-perl/ffmpeg-build-script
 
 ## API
 程序对外提供http json api,用于添加和删除媒体源。
-json API参见 api.txt
+
+GET http://localhost:8086/addstream?src=rtmp://abc.com/live/my&dest=/live/my
+GET http://localhost:8086/delstream?dest=/live/my
+GET http://localhost:8086/listmedia
+
+json API 详情参见 api.txt
+
+
+
 
 ## release
 如果不想编译只要程序，可以点击 release 下载编译后的程序
