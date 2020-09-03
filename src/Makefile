@@ -9,7 +9,7 @@ SRC=$(wildcard *.cpp)
 OBJECTS:=$(patsubst %.cpp,%.o,$(SRC))
 
 PROGRAM:= srs_ingest_helper
-BINDIR := ./
+BINDIR := ../
 TARGET = $(BINDIR)/$(PROGRAM)
 
 
