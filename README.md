@@ -10,9 +10,9 @@ SRS内部是通过ffmpeg实现拉流的，就是启动一个ffmpeg进程，把�
 
 ## 编译和使用
 
-执行下列命令进行编译，没有其他依赖 
-(注意：centos7 用的gcc-4.8的regex有bug，httplib.hpp用到了regex，所以在centos7上要用gcc4.8以上的版本编译，否则运行时会出错） 
-参见： https://github.com/yhirose/cpp-httplib#g
+执行下列命令进行编译，没有其他依赖  
+(注意：centos7 用的gcc-4.8的regex有bug，httplib.hpp用到了regex，所以在centos7上要用gcc4.8以上的版本编译，否则运行时会出错）  
+参见： https://github.com/yhirose/cpp-httplib#g 
 
 ```
 cd src
