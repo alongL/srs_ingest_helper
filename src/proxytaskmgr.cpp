@@ -72,7 +72,7 @@ void IngestTask::init(std::string src, std::string dest)
 
 	ffmpeg = new SrsFFMPEG(ffmpeg_path);
 	auto name = replaceAll(dest, "/", "_");
-	string log_file = "./logs/ffmpeg" + name + ".log";// ÈÕÖ¾ÎÄ¼ş./logs/ffmpeg_live_my.log
+	string log_file = "./logs/ffmpeg" + name + ".log";// æ—¥å¿—æ–‡ä»¶./logs/ffmpeg_live_my.log
 	
 	ffmpeg->initialize(src, rtmp, log_file);
 }
@@ -126,10 +126,10 @@ int ProxytaskMgr::init()
 
 
 
-//ÄÚ²¿µ÷ÓÃ
+//å†…éƒ¨è°ƒç”¨
 IngestTask* ProxytaskMgr::insert_task(std::string src, std::string dest)
 {
-	//Ä¿Ç°Ã»ÓĞ´ËÈÎÎñ£¬Ìí¼Ó
+	//ç›®å‰æ²¡æœ‰æ­¤ä»»åŠ¡ï¼Œæ·»åŠ 
 	IngestTask* ptask = new IngestTask();
 	ptask->init(src, dest);
 	m_taskMap[dest] = ptask;
@@ -137,10 +137,10 @@ IngestTask* ProxytaskMgr::insert_task(std::string src, std::string dest)
 }
 
 
-//Íâ²¿apiµ÷ÓÃ
+//å¤–éƒ¨apiè°ƒç”¨
 int ProxytaskMgr::add_task(std::string src, std::string dest)
 {
-	//Èç¹ûÒÑ¾­´æÔÚ£¬²»Ìí¼Ó
+	//å¦‚æœå·²ç»å­˜åœ¨ï¼Œä¸æ·»åŠ 
 	if (m_taskMap.find(dest) != m_taskMap.end())
 	{
 		m_errmsg = "dest: " + dest + " exists.";
@@ -160,10 +160,10 @@ int ProxytaskMgr::add_task(std::string src, std::string dest)
 
 
 
-//É¾³ıÄ³¸öÈÎÎñ
+//åˆ é™¤æŸä¸ªä»»åŠ¡
 int ProxytaskMgr::del_task(std::string dest)
 {
-	//Èç¹ûÒÑ¾­´æÔÚ£¬²»Ìí¼Ó
+	//å¦‚æœå·²ç»å­˜åœ¨ï¼Œä¸æ·»åŠ 
 	auto iter = m_taskMap.find(dest);
 	if (iter == m_taskMap.end())
 	{
@@ -250,7 +250,7 @@ std::string ProxytaskMgr::get_hls_path(const std::string &dest)
 }
 
 
-//µÚÒ»´ÎÇ¿ÖÆ¼ÓÔØÅäÖÃÎÄ¼ş
+//ç¬¬ä¸€æ¬¡å¼ºåˆ¶åŠ è½½é…ç½®æ–‡ä»¶
 void ProxytaskMgr::loadConfig(bool force)
 {
 	m_hls_port = "8081";
@@ -261,7 +261,7 @@ void ProxytaskMgr::loadConfig(bool force)
 	printf("m_rtmp_port: %s\n", m_rtmp_port.c_str());
 }
 
-//½áÊø×Ó½ø³ÌÔËĞĞ
+//ç»“æŸå­è¿›ç¨‹è¿è¡Œ
 void ProxytaskMgr::fast_kill()
 {
 	//ffmpeg
@@ -282,11 +282,11 @@ void ProxytaskMgr::fast_kill()
 
 int ProxytaskMgr::check(int timecnt)
 {
-	//¼ì²ésrsÊÇ·ñÕıÔÚÔËĞĞ
+	//æ£€æŸ¥srsæ˜¯å¦æ­£åœ¨è¿è¡Œ
 	if (m_srs_process)
 	{
-		m_srs_process->cycle();//¼ì²é
-		m_srs_process->start();//Æô¶¯¡£ÄÚ²¿ÓĞ±êÖ¾£¬Èç¹ûÎ´ÔÚÔËĞĞ²ÅÔËĞĞ³ÌĞò
+		m_srs_process->cycle();//æ£€æŸ¥
+		m_srs_process->start();//å¯åŠ¨ã€‚å†…éƒ¨æœ‰æ ‡å¿—ï¼Œå¦‚æœæœªåœ¨è¿è¡Œæ‰è¿è¡Œç¨‹åº
 	}
 
 
@@ -307,7 +307,7 @@ int ProxytaskMgr::check(int timecnt)
 
 	if (timecnt % 10 == 0)//every 10 seconds
 	{
-		loadConfig(); //¶ÁÈ¡¼ÓÔØÅäÖÃÎÄ¼ş
+		loadConfig(); //è¯»å–åŠ è½½é…ç½®æ–‡ä»¶
 	}
 
 	return 0;
@@ -358,7 +358,7 @@ int ProxytaskMgr::load_from_db()
 			
 		}
 
-		printf("ProxytaskMgr::load_from_db(). size:%d\n", m_taskMap.size());
+		printf("ProxytaskMgr::load_from_db(). size:%ld\n", m_taskMap.size());
 		for (auto item : m_taskMap)
 		{
 			string dest = item.first;
